@@ -6,7 +6,7 @@ import { getContacts } from "redux/contacts/contactsFilter.js";
 
 function ContactForm() {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [phone, setNumber] = useState("");
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ function ContactForm() {
     e.preventDefault();
     contacts.map((contact) => contact.name).includes(name)
       ? alert(`${name} is already in contacts`)
-      : dispatch(addContacts({ name, number }));
+      : dispatch(addContacts({ name, phone }));
     setName("");
     setNumber("");
   };
@@ -51,7 +51,7 @@ function ContactForm() {
           className={styles.input}
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          value={number}
+          value={phone}
           onChange={handleChange}
           placeholder="Number"
           autoComplete="on"
