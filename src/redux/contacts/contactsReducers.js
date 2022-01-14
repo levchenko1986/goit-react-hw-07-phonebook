@@ -3,7 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import * as contactsActions from "./contactsActions";
 import { getAllContacts, addContacts, deleteContacts } from "./contactsFetch";
 
-const { searchContact } = contactsActions;
+const { changeFilter } = contactsActions;
 const items = createReducer([], {
   [getAllContacts.fulfilled]: (_, { payload }) => payload,
   [addContacts.fulfilled]: (state, { payload }) => {
@@ -13,7 +13,7 @@ const items = createReducer([], {
     state.filter(({ id }) => id !== payload),
 });
 const filter = createReducer("", {
-  [searchContact]: (_, { payload }) => payload,
+  [changeFilter]: (_, { payload }) => payload,
 });
 const isLoading = createReducer(false, {
   [getAllContacts.pending]: () => true,

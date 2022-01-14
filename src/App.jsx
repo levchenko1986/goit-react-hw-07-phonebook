@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import s from './App.css';
+import './App.css';
 import { useDispatch } from 'react-redux';
+import Container from "./components/Container";
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -12,15 +13,13 @@ function App() {
     dispatch(getAllContacts());
   }, [dispatch]);
   return (
-    <div className={s.container}>
+    <Container>
       <h1>Phonebook</h1>
       <ContactForm />
-        <>
           <h2>Contacts</h2>
-          <Filter />
+            <Filter />
           <ContactList />
-        </>
-    </div>
+        </Container>
   );
 }
 export default App;

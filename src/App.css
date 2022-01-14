@@ -24,27 +24,6 @@ li {
   padding: 0;
 } */
 
-.app {
-  background-color: #f0f1f3;
-  border: 1px solid #000;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  max-width: 600px;
-  padding: 15px;
-}
-
 .title {
   margin-bottom: 20px;
-}
-
-.container {
-  display: block;
-  background-color: #f0f1f3;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px;
-  margin-top: 20px;
-  border: 1px solid black;
 }

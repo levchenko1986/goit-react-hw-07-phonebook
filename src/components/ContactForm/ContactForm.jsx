@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import s from "components/ContactForm/ContactForm.module.css";
+import styles from "components/ContactForm/ContactForm.module.css";
 import { addContacts } from "redux/contacts/contactsFetch.js";
 import { getContacts } from "redux/contacts/contactsFilter.js";
 
@@ -11,60 +11,58 @@ function ContactForm() {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    switch (e.target.name) {
-      case "name":
-        setName(e.target.value);
-        break;
-      case "number":
-        setNumber(e.target.value);
-        break;
-      default:
-        return;
+    if (e.target.name === "name") {
+      setName(e.target.value);
+    }
+    if (e.target.name === "number") {
+      setNumber(e.target.value);
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     contacts.map((contact) => contact.name).includes(name)
-      ? alert(`${name} is already in your yet`)
+      ? alert(`${name} is already in contacts`)
       : dispatch(addContacts({ name, number }));
-
     setName("");
     setNumber("");
   };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label className={s.label}>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <label className={styles.label}>
         Name
         <input
-          className={s.input}
           type="text"
+          className={styles.input}
           name="name"
-          value={name}
-          autoComplete="off"
-          onChange={handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          value={name}
+          onChange={handleChange}
+          placeholder="Name"
+          autoComplete="on"
           required
         />
       </label>
-      <label className={s.label}>
+      <label className={styles.label}>
         Number
         <input
-          className={s.input}
           type="tel"
+          className={styles.input}
           name="number"
-          value={number}
-          autoComplete="off"
-          onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          value={number}
+          onChange={handleChange}
+          placeholder="Number"
+          autoComplete="on"
           required
         />
       </label>
-      <button type="submit" className={s.button}>
+      <button type="submit" className={styles.button}>
         Add contact
       </button>
     </form>
   );
 }
+
 export default ContactForm;
