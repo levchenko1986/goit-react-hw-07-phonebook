@@ -26,6 +26,13 @@ const isLoading = createReducer(false, {
   [deleteContacts.fulfilled]: () => false,
   [deleteContacts.rejected]: () => false,
 });
+
+const error = createReducer(null, {
+  [getAllContacts.rejected]: (_, { payload }) => payload,
+  [addContacts.rejected]: (_, { payload }) => payload,
+  [deleteContacts.rejected]: (_, { payload }) => payload,
+});
+
 export default combineReducers({
   items,
   filter,
